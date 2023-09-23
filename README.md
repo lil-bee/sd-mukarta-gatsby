@@ -1,3 +1,3 @@
 <h1 align="center">
-  Gatsby WordPress Gutenberg Starter
+  Gatsby WordPress SD Muhammadiyah Karangkajen Yogyakarta
 </h1>
