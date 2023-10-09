@@ -36,6 +36,8 @@ exports.createPages = async ({ actions, graphql }) => {
       blocks,
       graphql,
       coreMediaText: true,
+      coreImage: true,
+      coreCover: true,
     });
     createPage({
       path: page.uri,

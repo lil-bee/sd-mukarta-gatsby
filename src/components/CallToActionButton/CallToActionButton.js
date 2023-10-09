@@ -13,8 +13,8 @@ export const CallToActionButton = ({
       className={` no-underline
       ${
         isActive
-          ? "cursor-default bg-yellow-400"
-          : "cursor-pointer  bg-yellow-500"
+          ? "cursor-default bg-emas-elegan"
+          : "cursor-pointer  bg-emas-elegan"
       }
       ${fullWidth ? "block w-full" : "inline-block"}
         btn`}

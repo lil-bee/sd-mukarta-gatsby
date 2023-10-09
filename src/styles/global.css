@@ -2,8 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-display: swap;
+  src: url(/fonts/Lora-Regular.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-display: swap;
+  src: url(/fonts/Poppins-Regular.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-weight: bold;
+  font-display: swap;
+  src: url(/fonts/PlusJakartaSans-Bold.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+  src: url(/fonts/PlusJakartaSans-BoldItalic.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: italic;
+  font-display: swap;
+  src: url(/fonts/PlusJakartaSans-Italic.woff2) format("woff2");
+}
+
 @layer base {
-    ol {
-        list-style-type: decimal;
-    }
+  ol {
+    list-style-type: decimal;
+  }
 }

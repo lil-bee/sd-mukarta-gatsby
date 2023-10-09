@@ -6,6 +6,16 @@ module.exports = {
     "./src/templates/**/*.{js,jsx,ts,tsx}",
     "./src/config/**/*.{js,jsx,ts,tsx}",
   ],
-  theme: {},
+  theme: {
+    extend: {
+      fontFamily: {
+        heading: "var(--wp--preset--font-family--lora)",
+      },
+      colors: {
+        "biru-gelap": "var(--wp--preset--color--biru-gelap)",
+        "emas-elegan": "var(--wp--preset--color--emas-elegan)",
+      },
+    },
+  },
   plugins: [],
 };
