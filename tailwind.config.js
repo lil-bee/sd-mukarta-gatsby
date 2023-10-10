@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        heading: "var(--wp--preset--font-family--lora)",
+        heading: "lora",
       },
       colors: {
         "biru-gelap": "var(--wp--preset--color--biru-gelap)",

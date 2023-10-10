@@ -45,7 +45,7 @@ export const Menu = () => {
   console.log(data);
 
   return (
-    <div className="sticky top-0 z-20 flex h-16 items-center justify-between bg-gradient-to-tr from-biru-gelap to-blue-900  px-10 font-bold text-white">
+    <div className="sticky top-0 z-20 flex h-16 items-center justify-between bg-biru-gelap  px-10 font-bold text-white">
       <Link to="/">
         <StaticImage
           src="../../../static/icon.png"
@@ -61,18 +61,18 @@ export const Menu = () => {
             className="group relative flex h-full cursor-pointer"
           >
             <Link
-              className=" flex h-full items-center px-4 text-white no-underline hover:bg-blue-800"
+              className=" flex h-full items-center px-4 text-white no-underline hover:bg-blue-900"
               to={menuItem.root.destination?.uri}
             >
               {menuItem.root.label}
             </Link>
             {!!menuItem.subMenuItems?.length && (
-              <div className="absolute top-full right-0 hidden bg-blue-800 text-right group-hover:block">
+              <div className="absolute top-full right-0 hidden bg-biru-gelap text-right group-hover:block">
                 {menuItem.subMenuItems.map((subMenuItem, index) => (
                   <Link
                     to={subMenuItem.destination.uri}
                     key={index}
-                    className="block whitespace-nowrap p-4 text-white no-underline hover:bg-blue-700"
+                    className="block whitespace-nowrap p-4 text-white no-underline hover:bg-blue-900"
                   >
                     {subMenuItem.label}
                   </Link>

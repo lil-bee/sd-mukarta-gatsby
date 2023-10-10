@@ -6,14 +6,14 @@
   font-family: "Lora";
   font-style: normal;
   font-display: swap;
-  src: url(/fonts/Lora-Regular.woff2) format("woff2");
+  src: url(/fonts/Sangbleu-Sunrise.woff2) format("woff2");
 }
 
 @font-face {
-  font-family: "Poppins";
+  font-family: "Plus Jakarta Sans";
   font-style: normal;
   font-display: swap;
-  src: url(/fonts/Poppins-Regular.woff2) format("woff2");
+  src: url(/fonts/PlusJakartaSans-Regular.woff2) format("woff2");
 }
 
 @font-face {
@@ -41,5 +41,22 @@
 @layer base {
   ol {
     list-style-type: decimal;
+  }
+}
+
+.wp-site-blocks {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    &:not(:first-child) {
+      @apply mt-6;
+    }
+    &:not(:last-child) {
+      @apply mb-6;
+    }
   }
 }
