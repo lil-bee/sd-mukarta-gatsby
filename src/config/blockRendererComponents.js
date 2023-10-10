@@ -22,6 +22,17 @@ export const blockRendererComponents = (block) => {
         </Cover>
       );
     }
+    case "core/columns": {
+      return (
+        <div
+          key={block.id}
+          style={getStyles(block)}
+          className={getClasses(block)}
+        >
+          <BlockRenderer blocks={block.innerBlocks} />
+        </div>
+      );
+    }
     case "core/image": {
       return (
         <figure key={block.id} className={getClasses(block)}>

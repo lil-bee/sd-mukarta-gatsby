@@ -45,7 +45,7 @@ export const Menu = () => {
   console.log(data);
 
   return (
-    <div className="sticky top-0 z-20 flex h-16 items-center justify-between bg-biru-gelap  px-10 font-bold text-white">
+    <div className="sticky top-0 z-20 flex h-20 items-center justify-between bg-biru-gelap  px-10  text-white">
       <Link to="/">
         <StaticImage
           src="../../../static/icon.png"
@@ -89,6 +89,7 @@ export const Menu = () => {
               key={index}
               label={ctaButton.label}
               destination={ctaButton.destination.uri}
+              type={ctaButton.tipe}
             />
           )
         )}

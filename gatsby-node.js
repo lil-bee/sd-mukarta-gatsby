@@ -14,6 +14,13 @@ exports.createPages = async ({ actions, graphql }) => {
       wp {
         themeStylesheet
       }
+      allWpAgenda {
+        nodes {
+          databaseId
+          blocks
+          uri
+        }
+      }
       allWpPage {
         nodes {
           databaseId
@@ -27,9 +34,11 @@ exports.createPages = async ({ actions, graphql }) => {
   try {
     fs.writeFileSync("./public/themeStylesheet.css", data.wp.themeStylesheet);
   } catch (e) {}
+  const allPage = [...data.allWpPage.nodes, ...data.allWpAgenda.nodes];
 
-  for (let i = 0; i < data.allWpPage.nodes.length; i++) {
-    const page = data.allWpPage.nodes[i];
+  for (let i = 0; i < allPage.length; i++) {
+    //ngambil dan ngatur block
+    const page = allPage[i];
     let blocks = page.blocks;
     blocks = assignIds(blocks);
     blocks = await assignGatsbyImage({
