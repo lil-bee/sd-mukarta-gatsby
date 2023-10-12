@@ -10,6 +10,7 @@ import {
   Mediatext,
   CallToActionButton,
   DisplayPostTypes,
+  ContactForm7,
 } from "../components";
 
 export const blockRendererComponents = (block) => {
@@ -27,12 +28,25 @@ export const blockRendererComponents = (block) => {
         </Cover>
       );
     }
+    case "contact-form-7/contact-form-selector": {
+      return (
+        <ContactForm7
+          key={block.id}
+          formId={block.attributes.id}
+          formMarkup={block.attributes.formMarkup
+            .replace('novalidate="novalidate"', "")
+            .split('aria-required="true"')
+            .join('aria-required="true" required')}
+        />
+      );
+    }
     case "dpt/display-post-types": {
       return (
         <DisplayPostTypes
           key={block.id}
           style={getStyles(block)}
           className={getClasses(block)}
+          dynamicContent={block.dynamicContent}
         />
       );
     }
