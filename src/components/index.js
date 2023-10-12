@@ -3,3 +3,4 @@ export * from "./Menu";
 export * from "./Layout";
 export * from "./CallToActionButton";
 export * from "./MediaText";
+export * from "./DisplayPostTypes";

@@ -1,4 +1,4 @@
-import { Link, graphql, useStaticQuery } from "gatsby";
+import { Link, graphql, useStaticQuery, navigate } from "gatsby";
 import { CallToActionButton } from "../CallToActionButton";
 import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
@@ -41,8 +41,33 @@ export const Menu = () => {
     }
   `);
 
+  const handleNavigation = (e, label) => {
+    if (label === "Keunggulan") {
+      e.preventDefault();
+      if (window.location.pathname === "/") {
+        scrollToSection(".keunggulan");
+      } else {
+        navigate("/");
+        setTimeout(() => {
+          scrollToSection(".keunggulan");
+        }, 500); // adjust the delay as needed
+      }
+    }
+  };
+
+  const scrollToSection = (selector) => {
+    let target = document.querySelector(selector);
+    if (target) {
+      window.scrollTo({
+        top: target.offsetTop - 90, // replace navbarHeight with the height of your navbar
+        behavior: "smooth",
+      });
+    }
+  };
+
   const { menuItems } = data.wp.acfOptionsMainMenu.mainMenu;
   console.log(data);
+  console.log(window.location.pathname === "/");
 
   return (
     <div className="sticky top-0 z-20 flex h-20 items-center justify-between bg-biru-gelap  px-10  text-white">
@@ -70,9 +95,10 @@ export const Menu = () => {
               <div className="absolute top-full right-0 hidden bg-biru-gelap text-right group-hover:block">
                 {menuItem.subMenuItems.map((subMenuItem, index) => (
                   <Link
-                    to={subMenuItem.destination.uri}
+                    to={subMenuItem.destination?.uri}
                     key={index}
                     className="block whitespace-nowrap p-4 text-white no-underline hover:bg-blue-900"
+                    onClick={(e) => handleNavigation(e, subMenuItem.label)}
                   >
                     {subMenuItem.label}
                   </Link>

@@ -21,6 +21,13 @@ exports.createPages = async ({ actions, graphql }) => {
           uri
         }
       }
+      allWpTest {
+        nodes {
+          databaseId
+          blocks
+          uri
+        }
+      }
       allWpPage {
         nodes {
           databaseId
@@ -34,7 +41,11 @@ exports.createPages = async ({ actions, graphql }) => {
   try {
     fs.writeFileSync("./public/themeStylesheet.css", data.wp.themeStylesheet);
   } catch (e) {}
-  const allPage = [...data.allWpPage.nodes, ...data.allWpAgenda.nodes];
+  const allPage = [
+    ...data.allWpPage.nodes,
+    ...data.allWpAgenda.nodes,
+    ...data.allWpTest.nodes,
+  ];
 
   for (let i = 0; i < allPage.length; i++) {
     //ngambil dan ngatur block

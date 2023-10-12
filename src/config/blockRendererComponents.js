@@ -5,7 +5,12 @@ import {
   getStyles,
 } from "@webdeveducation/wp-block-tools";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { Cover, Mediatext, CallToActionButton } from "../components";
+import {
+  Cover,
+  Mediatext,
+  CallToActionButton,
+  DisplayPostTypes,
+} from "../components";
 
 export const blockRendererComponents = (block) => {
   console.log(block);
@@ -22,15 +27,13 @@ export const blockRendererComponents = (block) => {
         </Cover>
       );
     }
-    case "core/columns": {
+    case "dpt/display-post-types": {
       return (
-        <div
+        <DisplayPostTypes
           key={block.id}
           style={getStyles(block)}
           className={getClasses(block)}
-        >
-          <BlockRenderer blocks={block.innerBlocks} />
-        </div>
+        />
       );
     }
     case "core/image": {
@@ -44,6 +47,13 @@ export const blockRendererComponents = (block) => {
             height={block.attributes.height}
           />
         </figure>
+      );
+    }
+    case "core/gallery": {
+      return (
+        <div key={block.id} className={getClasses(block)}>
+          <BlockRenderer blocks={block.innerBlocks} />
+        </div>
       );
     }
     case "tgg/ctabutton": {
@@ -76,6 +86,7 @@ export const blockRendererComponents = (block) => {
         </Mediatext>
       );
     }
+
     default:
       return null;
   }
