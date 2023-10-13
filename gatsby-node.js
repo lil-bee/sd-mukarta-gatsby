@@ -21,7 +21,14 @@ exports.createPages = async ({ actions, graphql }) => {
           uri
         }
       }
-      allWpTest {
+      allWpPrestasi {
+        nodes {
+          databaseId
+          blocks
+          uri
+        }
+      }
+      allWpPost {
         nodes {
           databaseId
           blocks
@@ -44,7 +51,8 @@ exports.createPages = async ({ actions, graphql }) => {
   const allPage = [
     ...data.allWpPage.nodes,
     ...data.allWpAgenda.nodes,
-    ...data.allWpTest.nodes,
+    ...data.allWpPost.nodes,
+    ...data.allWpPrestasi.nodes,
   ];
 
   for (let i = 0; i < allPage.length; i++) {

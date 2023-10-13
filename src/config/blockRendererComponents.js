@@ -14,7 +14,10 @@ import {
 } from "../components";
 
 export const blockRendererComponents = (block) => {
-  console.log(block);
+  // console.log(block);
+  console.log(
+    window.location.pathname.substring(1, window.location.pathname.length - 1)
+  );
   switch (block.name) {
     case "core/cover": {
       return (
@@ -63,13 +66,13 @@ export const blockRendererComponents = (block) => {
         </figure>
       );
     }
-    case "core/gallery": {
-      return (
-        <div key={block.id} className={getClasses(block)}>
-          <BlockRenderer blocks={block.innerBlocks} />
-        </div>
-      );
-    }
+    // case "core/gallery": {
+    //   return (
+    //     <div key={block.id} className={getClasses(block)}>
+    //       <BlockRenderer blocks={block.innerBlocks} />
+    //     </div>
+    //   );
+    // }
     case "tgg/ctabutton": {
       const alignMap = {
         left: "text-left",

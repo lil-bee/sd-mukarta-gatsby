@@ -73,8 +73,9 @@ export const Menu = () => {
     <div className="sticky top-0 z-20 flex h-20 items-center justify-between bg-biru-gelap  px-10  text-white">
       <Link to="/">
         <StaticImage
-          src="../../../static/icon.png"
-          height={30}
+          className="rounded-full bg-gray-50"
+          src="../../../static/mukarta.png"
+          height={60}
           layout="fixed"
           alt="logo"
         />
