@@ -3,8 +3,8 @@ import { GatsbyImage } from "gatsby-plugin-image";
 
 export const Cover = ({ children, style, className, gatsbyImage }) => {
   return (
-    <div style={style} className={`relative text-white ${className} `}>
-      <div className="absolute h-full w-full">
+    <div style={style} className={`relative !rounded text-white ${className} `}>
+      <div className="absolute h-full w-full rounded">
         <GatsbyImage
           alt=""
           image={gatsbyImage}
@@ -14,7 +14,7 @@ export const Cover = ({ children, style, className, gatsbyImage }) => {
         />
       </div>
       <div className="absolute top-0 left-0 h-full w-full bg-black/50" />
-      <div className="z-10 flex flex-col items-center justify-center px-24">
+      <div className="z-10 flex flex-col items-center justify-center ">
         {children}
       </div>
     </div>

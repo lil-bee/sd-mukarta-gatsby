@@ -14,10 +14,8 @@ import {
 } from "../components";
 
 export const blockRendererComponents = (block) => {
-  // console.log(block);
-  console.log(
-    window.location.pathname.substring(1, window.location.pathname.length - 1)
-  );
+  console.log(block);
+
   switch (block.name) {
     case "core/cover": {
       return (
@@ -49,7 +47,6 @@ export const blockRendererComponents = (block) => {
           key={block.id}
           style={getStyles(block)}
           className={getClasses(block)}
-          dynamicContent={block.dynamicContent}
         />
       );
     }
@@ -85,6 +82,7 @@ export const blockRendererComponents = (block) => {
             destination={block.attributes.data.destination}
             label={block.attributes.data.label}
             type={block.attributes.data.type}
+            putihOutline={block.attributes.className}
           />
         </div>
       );

@@ -16,6 +16,7 @@ export const Menu = () => {
                   uri
                 }
               }
+              tipe
             }
             menuItems {
               root {
@@ -66,11 +67,11 @@ export const Menu = () => {
   };
 
   const { menuItems } = data.wp.acfOptionsMainMenu.mainMenu;
-  console.log(data);
+  console.log(data.wp.acfOptionsMainMenu.mainMenu.callToActionButton.tipe);
   console.log(window.location.pathname === "/");
 
   return (
-    <div className="sticky top-0 z-20 flex h-20 items-center justify-between bg-biru-gelap  px-10  text-white">
+    <div className="sticky top-0 z-20 flex h-20 items-center justify-between bg-biru-gelap px-[72px]  text-white">
       <Link to="/">
         <StaticImage
           className="rounded-full bg-gray-50"
@@ -109,7 +110,7 @@ export const Menu = () => {
           </div>
         ))}
       </div>
-      <div className="flex gap-2 pl-4">
+      <div className="flex gap-3 ">
         {(data.wp.acfOptionsMainMenu.mainMenu.callToActionButton || []).map(
           (ctaButton, index) => (
             <CallToActionButton

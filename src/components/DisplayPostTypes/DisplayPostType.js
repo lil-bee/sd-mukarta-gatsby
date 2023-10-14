@@ -1,8 +1,17 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
+import { PageNumber } from "./PageNumber";
 
 export const DisplayPostTypes = ({ dynamicContent, style, className }) => {
   const currentPath = window.location.pathname;
+
+  const pageSize = 6;
+  let page = 1;
+
+  if (typeof window !== "undefined") {
+    const params = new URLSearchParams(window.location.search);
+    page = parseInt(params.get("page") || "1");
+  }
 
   // Menentukan jenis halaman berdasarkan path URL saat ini
   let pageType = "";
@@ -16,8 +25,8 @@ export const DisplayPostTypes = ({ dynamicContent, style, className }) => {
 
   const { data, loading } = useQuery(
     gql`
-      query NewQuery {
-        posts {
+      query NewQuery($size: Int!, $offset: Int!) {
+        posts(where: { offsetPagination: { size: $size, offset: $offset } }) {
           nodes {
             featuredImage {
               node {
@@ -29,8 +38,13 @@ export const DisplayPostTypes = ({ dynamicContent, style, className }) => {
             title
             date
           }
+          pageInfo {
+            offsetPagination {
+              total
+            }
+          }
         }
-        agendas {
+        agendas(where: { offsetPagination: { size: $size, offset: $offset } }) {
           nodes {
             featuredImage {
               node {
@@ -42,8 +56,15 @@ export const DisplayPostTypes = ({ dynamicContent, style, className }) => {
             title
             date
           }
+          pageInfo {
+            offsetPagination {
+              total
+            }
+          }
         }
-        prestasis {
+        prestasis(
+          where: { offsetPagination: { size: $size, offset: $offset } }
+        ) {
           nodes {
             featuredImage {
               node {
@@ -54,23 +75,42 @@ export const DisplayPostTypes = ({ dynamicContent, style, className }) => {
             uri
             title
             date
+          }
+          pageInfo {
+            offsetPagination {
+              total
+            }
           }
         }
       }
-    `
+    `,
+    {
+      variables: {
+        size: pageSize,
+        offset: pageSize * (page - 1),
+      },
+    }
   );
 
+  let totalResults = data?.posts?.pageInfo?.offsetPagination?.total || 0;
   // Filter data berdasarkan jenis halaman yang sedang dibuka
   let filteredData = [];
   if (pageType === "agendas") {
     filteredData = data?.agendas?.nodes;
+    totalResults = data?.agendas?.pageInfo?.offsetPagination?.total || 0;
   } else if (pageType === "prestasis") {
     filteredData = data?.prestasis?.nodes;
+    totalResults = data?.prestasis?.pageInfo?.offsetPagination?.total || 0;
   } else {
     filteredData = data?.posts?.nodes;
+    totalResults = data?.posts?.pageInfo?.offsetPagination?.total || 0;
   }
+
+  console.log(filteredData);
+
+  const totalPages = Math.ceil(totalResults / pageSize);
   return (
-    <div className={`w-full`} style={style}>
+    <div className={`w-full ${className}`} style={style}>
       {!loading && !!filteredData?.length > 0 ? (
         <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-3">
           {filteredData.map((post) => (
@@ -83,9 +123,17 @@ export const DisplayPostTypes = ({ dynamicContent, style, className }) => {
                       backgroundImage: `url(${post.featuredImage.node.sourceUrl})`,
                       boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
                     }
-                  : {}
+                  : {
+                      backgroundColor: "#f2f2f2",
+                      boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                    }
               }
             >
+              {!post.featuredImage?.node?.sourceUrl && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-gray-500">Oops...</span>
+                </div>
+              )}
               <div class="absolute top-0 right-0 bottom-0 left-0 mt-20 overflow-hidden rounded bg-gradient-to-b from-transparent to-gray-900 shadow-lg"></div>
               <div class="absolute top-0 right-0 left-0 mx-5 mt-2 flex items-center justify-end overflow-hidden bg-transparent ">
                 <div class="font-regular  flex flex-col justify-start rounded bg-emas-elegan p-1 text-right text-gray-100">
@@ -144,7 +192,14 @@ export const DisplayPostTypes = ({ dynamicContent, style, className }) => {
           ))}
         </div>
       ) : (
-        <div>gaada</div>
+        <div>Loading...</div>
+      )}
+      {!!(totalResults && currentPath !== "/") && (
+        <div className="my-4 flex items-center justify-center gap-2">
+          {Array.from({ length: totalPages }).map((_, i) => {
+            return <PageNumber key={i} pageNumber={i + 1} />;
+          })}
+        </div>
       )}
     </div>
   );
