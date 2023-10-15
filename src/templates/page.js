@@ -1,6 +1,6 @@
 import React from "react";
 import { BlockRendererProvider } from "@webdeveducation/wp-block-tools";
-import { Link } from "gatsby";
+import { Link, graphql } from "gatsby";
 import { blockRendererComponents } from "../config/blockRendererComponents";
 import { Layout } from "../components/Layout/Layout";
 
@@ -23,6 +23,33 @@ const Page = (props) => {
         renderComponent={blockRendererComponents}
       />
     </Layout>
+  );
+};
+
+export const query = graphql`
+  query PageQuery($databaseId: Int!) {
+    wpPage(databaseId: { eq: $databaseId }) {
+      seo {
+        metaDesc
+        title
+      }
+    }
+    wpPrestasi(databaseId: { eq: $databaseId }) {
+      seo {
+        metaDesc
+        title
+      }
+    }
+  }
+`;
+
+export const Head = ({ data }) => {
+  const page = data.wpPage || data.wpPrestasi;
+  return (
+    <>
+      <title>{page.seo?.title || ""}</title>
+      <meta name="description" content={page.seo?.metaDesc || ""}></meta>
+    </>
   );
 };
 

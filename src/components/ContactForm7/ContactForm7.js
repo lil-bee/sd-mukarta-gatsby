@@ -30,7 +30,7 @@ export const ContactForm7 = ({ formId, formMarkup }) => {
   }, [formMarkup, formId]);
 
   return hasSubmitted ? (
-    <div className="rounded bg-emerald-900 p-4 text-white">
+    <div className="rounded bg-biru-gelap p-4 text-white">
       Thank you for your message
     </div>
   ) : (

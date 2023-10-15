@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
 import { PageNumber } from "./PageNumber";
+import { Link } from "gatsby";
 
 export const DisplayPostTypes = ({ dynamicContent, style, className }) => {
   const currentPath = window.location.pathname;
@@ -19,7 +20,7 @@ export const DisplayPostTypes = ({ dynamicContent, style, className }) => {
     pageType = "agendas";
   } else if (currentPath.includes("prestasi")) {
     pageType = "prestasis";
-  } else {
+  } else if (currentPath.includes("berita")) {
     pageType = "posts";
   }
 
@@ -106,6 +107,8 @@ export const DisplayPostTypes = ({ dynamicContent, style, className }) => {
     totalResults = data?.posts?.pageInfo?.offsetPagination?.total || 0;
   }
 
+  console.log(pageType);
+
   console.log(filteredData);
 
   const totalPages = Math.ceil(totalResults / pageSize);
@@ -114,9 +117,10 @@ export const DisplayPostTypes = ({ dynamicContent, style, className }) => {
       {!loading && !!filteredData?.length > 0 ? (
         <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-3">
           {filteredData.map((post) => (
-            <div
+            <Link
+              to={post.uri}
               key={post.databaseId}
-              class="relative my-5 flex h-80 w-full translate-y-4 transform items-end justify-start overflow-hidden rounded bg-cover bg-center text-left  shadow-lg duration-500 ease-in-out hover:translate-y-0 md:max-w-2xl"
+              class="relative my-5 flex h-80 w-full translate-y-4 transform items-end justify-start overflow-hidden rounded bg-cover bg-center text-left no-underline  shadow-lg duration-500 ease-in-out hover:translate-y-0 md:max-w-2xl"
               style={
                 !!post.featuredImage?.node?.sourceUrl
                   ? {
@@ -153,42 +157,18 @@ export const DisplayPostTypes = ({ dynamicContent, style, className }) => {
                 </div>
               </div>
               <main class="z-10 p-5">
-                <a
-                  href={post.uri}
-                  class="font-regular text-xl font-medium leading-7 tracking-tight text-white no-underline transition duration-300 ease-in-out hover:text-emas-elegan"
+                <Link
+                  to={post.uri}
+                  class="text-xl font-semibold  leading-7 tracking-tight text-white !no-underline transition duration-300 ease-in-out hover:text-emas-elegan"
                 >
                   {post.title.length > 50 ? (
                     <span>{post.title.substring(0, 50)}...</span>
                   ) : (
                     <span>{post.title}</span>
                   )}
-                </a>
+                </Link>
               </main>
-            </div>
-
-            // {/* <div
-            // className="flex flex-col border border-stone-200 bg-stone-100 p-2"
-            // key={car.databaseId}
-            // >
-            // {!!car.featuredImage?.node?.sourceUrl && (
-            //   <img
-            //     className="h-[200px] w-full object-cover"
-            //     src={car.featuredImage.node.sourceUrl}
-            //     alt=""
-            //   />
-            // )}
-            // <div className="my-2 justify-between gap-2 font-heading text-xl font-bold lg:flex">
-            //   <div className="my-2">{car.title}</div>
-
-            // </div>
-            // <div>
-            //   <CallToActionButton
-            //     label="Lihat Selengkapnya"
-            //     destination={car.uri}
-            //     type="outline"
-            //   />
-            // </div>
-            // </div> */}
+            </Link>
           ))}
         </div>
       ) : (
@@ -197,7 +177,19 @@ export const DisplayPostTypes = ({ dynamicContent, style, className }) => {
       {!!(totalResults && currentPath !== "/") && (
         <div className="my-4 flex items-center justify-center gap-2">
           {Array.from({ length: totalPages }).map((_, i) => {
-            return <PageNumber key={i} pageNumber={i + 1} />;
+            if (
+              i === 0 || // Tombol pertama
+              i === totalPages - 1 || // Tombol terakhir
+              (i >= page - 2 && i <= page + 2) // Tombol di sekitar halaman saat ini
+            ) {
+              return <PageNumber key={i} pageNumber={i + 1} />;
+            } else if (
+              (i === page - 3 && page > 4) || // Tombol sebelum "..."
+              (i === page + 3 && page < totalPages - 3) // Tombol setelah "..."
+            ) {
+              return <span key={i}>...</span>;
+            }
+            return null;
           })}
         </div>
       )}

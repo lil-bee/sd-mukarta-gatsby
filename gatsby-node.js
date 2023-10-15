@@ -72,6 +72,7 @@ exports.createPages = async ({ actions, graphql }) => {
       component: pageTemplate,
       context: {
         blocks,
+        databaseId: page.databaseId,
       },
     });
   }
