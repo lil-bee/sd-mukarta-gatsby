@@ -60,6 +60,15 @@
   input[type="submit"] {
     @apply btn transform cursor-pointer rounded-lg border-none px-5 py-3 duration-300 ease-in-out hover:scale-105;
   }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+.bawah {
+  @apply absolute w-full max-w-full;
 }
 
 .wp-site-blocks {
@@ -76,5 +85,8 @@
     &:not(:last-child) {
       @apply mb-6;
     }
+  }
+  a {
+    @apply no-underline;
   }
 }

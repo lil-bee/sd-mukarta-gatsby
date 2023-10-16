@@ -2,6 +2,7 @@ import { Link, graphql, useStaticQuery, navigate } from "gatsby";
 import { CallToActionButton } from "../CallToActionButton";
 import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
+import { useState } from "react";
 
 export const Menu = () => {
   const data = useStaticQuery(graphql`
@@ -42,15 +43,34 @@ export const Menu = () => {
     }
   `);
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   const handleNavigation = (e, label) => {
+    console.log(label);
     if (label === "Keunggulan") {
       e.preventDefault();
       if (window.location.pathname === "/") {
+        setIsOpen(!isOpen);
         scrollToSection(".keunggulan");
       } else {
         navigate("/");
         setTimeout(() => {
           scrollToSection(".keunggulan");
+        }, 500); // adjust the delay as needed
+      }
+    } else if (label === "Info Terkini") {
+      e.preventDefault();
+      if (window.location.pathname === "/") {
+        setIsOpen(!isOpen);
+        scrollToSection(".berita");
+      } else {
+        navigate("/");
+        setTimeout(() => {
+          scrollToSection(".berita");
         }, 500); // adjust the delay as needed
       }
     }
@@ -71,7 +91,7 @@ export const Menu = () => {
   console.log(window.location.pathname === "/");
 
   return (
-    <div className="sticky top-0 z-20 flex h-20 items-center justify-between bg-biru-gelap px-[72px]  text-white">
+    <div className="sticky top-0 z-20 flex h-20 flex-wrap items-center justify-between bg-biru-gelap px-3 text-white lg:px-[72px]">
       <Link to="/">
         <StaticImage
           className="rounded-full bg-gray-50"
@@ -81,46 +101,70 @@ export const Menu = () => {
           alt="logo"
         />
       </Link>
-      <div className="flex h-full flex-1 justify-end">
-        {(menuItems || []).map((menuItem, index) => (
-          <div
-            key={index}
-            className="group relative flex h-full cursor-pointer"
-          >
-            <Link
-              className=" flex h-full items-center px-4 text-white no-underline hover:bg-blue-900"
-              to={menuItem.root.destination?.uri}
-            >
-              {menuItem.root.label}
-            </Link>
-            {!!menuItem.subMenuItems?.length && (
-              <div className="absolute top-full right-0 hidden bg-biru-gelap text-right group-hover:block">
-                {menuItem.subMenuItems.map((subMenuItem, index) => (
-                  <Link
-                    to={subMenuItem.destination?.uri}
-                    key={index}
-                    className="block whitespace-nowrap p-4 text-white no-underline hover:bg-blue-900"
-                    onClick={(e) => handleNavigation(e, subMenuItem.label)}
-                  >
-                    {subMenuItem.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-      <div className="flex gap-3 ">
-        {(data.wp.acfOptionsMainMenu.mainMenu.callToActionButton || []).map(
-          (ctaButton, index) => (
-            <CallToActionButton
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        id="menu-button"
+        class="block h-6 w-6 cursor-pointer md:hidden"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        onClick={toggleMenu}
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M4 6h16M4 12h16M4 18h16"
+        />
+      </svg>
+      <div
+        id="menu"
+        className={`absolute top-20 right-0  ${
+          isOpen ? "block" : "hidden"
+        } w-full bg-biru-gelap md:relative md:top-0 md:mt-0 md:flex md:h-full md:w-auto md:items-center`}
+      >
+        <div className="flex h-full w-full flex-1 flex-col items-center justify-end gap-1 md:flex-row">
+          {(menuItems || []).map((menuItem, index) => (
+            <div
               key={index}
-              label={ctaButton.label}
-              destination={ctaButton.destination.uri}
-              type={ctaButton.tipe}
-            />
-          )
-        )}
+              className="group relative flex h-full cursor-pointer"
+            >
+              <Link
+                className="flex h-full items-center px-4 text-white no-underline hover:bg-blue-900"
+                to={menuItem.root.destination?.uri}
+                onClick={(e) => handleNavigation(e, menuItem.root.label)}
+              >
+                {menuItem.root.label}
+              </Link>
+              {!!menuItem.subMenuItems?.length && (
+                <div className="absolute top-full right-0 hidden bg-blue-900 text-right md:hidden md:group-hover:block">
+                  {menuItem.subMenuItems.map((subMenuItem, index) => (
+                    <Link
+                      to={subMenuItem.destination?.uri}
+                      key={index}
+                      className="block whitespace-nowrap p-4 text-white no-underline hover:bg-biru-gelap"
+                      onClick={(e) => handleNavigation(e, subMenuItem.label)}
+                    >
+                      {subMenuItem.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+        <div className="mx-24 mb-4 flex flex-col justify-center gap-3 pt-4 md:m-0 md:flex-row md:pl-4 md:pt-0">
+          {(data.wp.acfOptionsMainMenu.mainMenu.callToActionButton || []).map(
+            (ctaButton, index) => (
+              <CallToActionButton
+                key={index}
+                label={ctaButton.label}
+                destination={ctaButton.destination.uri}
+                type={ctaButton.tipe}
+              />
+            )
+          )}
+        </div>
       </div>
     </div>
   );

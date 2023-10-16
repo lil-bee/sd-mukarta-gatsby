@@ -1,4 +1,4 @@
-import { Link } from "gatsby";
+import { Link, navigate } from "gatsby";
 import React from "react";
 
 export const CallToActionButton = ({
@@ -9,9 +9,33 @@ export const CallToActionButton = ({
   isActive,
   putihOutline,
 }) => {
+  const handleNavigation = (e, label) => {
+    if (label === "Program Unggulan    →") {
+      e.preventDefault();
+      if (window.location.pathname === "/") {
+        scrollToSection(".keunggulan");
+      } else {
+        navigate("/");
+        setTimeout(() => {
+          scrollToSection(".keunggulan");
+        }, 500); // adjust the delay as needed
+      }
+    }
+  };
+
+  const scrollToSection = (selector) => {
+    let target = document.querySelector(selector);
+    if (target) {
+      window.scrollTo({
+        top: target.offsetTop - 90, // replace navbarHeight with the height of your navbar
+        behavior: "smooth",
+      });
+    }
+  };
   return (
     <Link
       to={destination}
+      onClick={(e) => handleNavigation(e, label)}
       className={` !no-underline
       ${
         isActive

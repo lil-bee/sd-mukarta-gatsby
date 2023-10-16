@@ -40,6 +40,18 @@ export const query = graphql`
         title
       }
     }
+    wpAgenda(databaseId: { eq: $databaseId }) {
+      seo {
+        metaDesc
+        title
+      }
+    }
+    wpPost(databaseId: { eq: $databaseId }) {
+      seo {
+        metaDesc
+        title
+      }
+    }
   }
 `;
 

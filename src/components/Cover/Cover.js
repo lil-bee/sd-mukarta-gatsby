@@ -24,7 +24,7 @@ export const Cover = ({ children, style, className, gatsbyImage }) => {
         />
       </div>
       <div className="absolute top-0 left-0 h-full w-full bg-black/50" />
-      <div className="z-10 flex flex-col items-center justify-center">
+      <div className="z-10 flex w-fit flex-col items-center justify-center">
         {children}
       </div>
     </div>
