@@ -5,13 +5,14 @@ import {
   getStyles,
 } from "@webdeveducation/wp-block-tools";
 import { GatsbyImage } from "gatsby-plugin-image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Cover,
-  Mediatext,
   CallToActionButton,
   DisplayPostTypes,
   ContactForm7,
 } from "../components";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
 
 export const blockRendererComponents = (block) => {
   console.log(block);
@@ -51,8 +52,14 @@ export const blockRendererComponents = (block) => {
       );
     }
     case "core/image": {
+      let match = block.originalContent.match(
+        /<figcaption class="wp-element-caption">(.*?)<\/figcaption>/
+      );
       return (
-        <figure key={block.id} className={getClasses(block)}>
+        <figure
+          key={block.id}
+          className={`${getClasses(block)} relative h-auto max-w-full`}
+        >
           <GatsbyImage
             style={getStyles(block)}
             image={block.attributes.gatsbyImage}
@@ -60,16 +67,25 @@ export const blockRendererComponents = (block) => {
             width={block.attributes.width}
             height={block.attributes.height}
           />
+          <figcaption
+            className={`${getClasses(
+              block
+            )} absolute bottom-[-10px]  ml-2 !p-0 text-white`}
+          >
+            {match ? match[1] : ""}
+          </figcaption>
         </figure>
       );
     }
-    // case "core/gallery": {
-    //   return (
-    //     <div key={block.id} className={getClasses(block)}>
-    //       <BlockRenderer blocks={block.innerBlocks} />
-    //     </div>
-    //   );
-    // }
+    case "core/gallery": {
+      return (
+        <div key={block.id} className={`columns-2 md:columns-3 lg:columns-3`}>
+          <div>
+            <BlockRenderer blocks={block.innerBlocks} />
+          </div>
+        </div>
+      );
+    }
     case "tgg/ctabutton": {
       const alignMap = {
         left: "text-left",
@@ -87,18 +103,20 @@ export const blockRendererComponents = (block) => {
         </div>
       );
     }
-    case "core/media-text": {
+    case "core/file": {
       return (
-        <Mediatext
-          key={block.id}
-          className={getClasses(block)}
-          style={getStyles(block)}
-          verticalAlignment={block.attributes.verticalAlignment}
-          gatsbyImage={block.attributes.gatsbyImage}
-          mediaPosition={block.attributes.mediaPosition}
-        >
-          <BlockRenderer blocks={block.innerBlocks} />
-        </Mediatext>
+        <div className="mt-3 hover:underline">
+          <a href={block.attributes.href} download>
+            <p className="text-emas-elegan">
+              {block.attributes.href
+                .split("/")
+                .pop()
+                .replace(/\.[^.]+$/, "") + "    "}
+
+              <FontAwesomeIcon icon={faDownload} />
+            </p>
+          </a>
+        </div>
       );
     }
 

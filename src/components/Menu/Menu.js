@@ -91,7 +91,7 @@ export const Menu = () => {
   console.log(window.location.pathname === "/");
 
   return (
-    <div className="sticky top-0 z-20 flex h-20 flex-wrap items-center justify-between bg-biru-gelap px-3 text-white lg:px-[72px]">
+    <div className="sticky top-0 z-20 flex h-20  items-center justify-between bg-biru-gelap px-3 text-white lg:px-[72px]">
       <Link to="/">
         <StaticImage
           className="rounded-full bg-gray-50"

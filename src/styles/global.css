@@ -90,3 +90,11 @@
     @apply no-underline;
   }
 }
+
+.wp-block-social-links:not(.is-style-logos-only) .wp-social-link {
+  @apply !bg-emas-elegan !text-white;
+}
+
+.cover-hero {
+  @apply !rounded-none;
+}

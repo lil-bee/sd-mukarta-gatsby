@@ -56,7 +56,7 @@ export const query = graphql`
 `;
 
 export const Head = ({ data }) => {
-  const page = data.wpPage || data.wpPrestasi;
+  const page = data.wpPage || data.wpPrestasi || data.wpPost || data.wpAgenda;
   return (
     <>
       <title>{page.seo?.title || ""}</title>
