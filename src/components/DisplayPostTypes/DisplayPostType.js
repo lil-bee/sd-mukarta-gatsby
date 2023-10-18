@@ -4,7 +4,7 @@ import { PageNumber } from "./PageNumber";
 import { Link } from "gatsby";
 
 export const DisplayPostTypes = ({ dynamicContent, style, className }) => {
-  const currentPath = "";
+  let currentPath = "";
 
   const pageSize = 6;
   let page = 1;

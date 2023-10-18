@@ -101,7 +101,7 @@ export const Menu = () => {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         id="menu-button"
-        class="block h-6 w-6 cursor-pointer md:hidden"
+        className="block h-6 w-6 cursor-pointer md:hidden"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
