@@ -4,13 +4,14 @@ import { PageNumber } from "./PageNumber";
 import { Link } from "gatsby";
 
 export const DisplayPostTypes = ({ dynamicContent, style, className }) => {
-  const currentPath = window.location.pathname;
+  const currentPath = "";
 
   const pageSize = 6;
   let page = 1;
 
   if (typeof window !== "undefined") {
     const params = new URLSearchParams(window.location.search);
+    currentPath = window.location.pathname;
     page = parseInt(params.get("page") || "1");
   }
 
@@ -38,6 +39,7 @@ export const DisplayPostTypes = ({ dynamicContent, style, className }) => {
             uri
             title
             date
+            databaseId
           }
           pageInfo {
             offsetPagination {
@@ -56,6 +58,7 @@ export const DisplayPostTypes = ({ dynamicContent, style, className }) => {
             uri
             title
             date
+            databaseId
           }
           pageInfo {
             offsetPagination {
@@ -76,6 +79,7 @@ export const DisplayPostTypes = ({ dynamicContent, style, className }) => {
             uri
             title
             date
+            databaseId
           }
           pageInfo {
             offsetPagination {
