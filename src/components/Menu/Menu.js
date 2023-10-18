@@ -50,7 +50,6 @@ export const Menu = () => {
   };
 
   const handleNavigation = (e, label) => {
-    console.log(label);
     if (label === "Keunggulan") {
       e.preventDefault();
       if (window.location.pathname === "/") {
@@ -87,8 +86,6 @@ export const Menu = () => {
   };
 
   const { menuItems } = data.wp.acfOptionsMainMenu.mainMenu;
-  console.log(data.wp.acfOptionsMainMenu.mainMenu.callToActionButton.tipe);
-  console.log(window.location.pathname === "/");
 
   return (
     <div className="sticky top-0 z-20 flex h-20  items-center justify-between bg-biru-gelap px-3 text-white lg:px-[72px]">

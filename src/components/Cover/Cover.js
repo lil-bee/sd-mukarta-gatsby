@@ -23,7 +23,7 @@ export const Cover = ({ children, style, className, gatsbyImage }) => {
           objectPosition="center"
         />
       </div>
-      <div className="absolute top-0 left-0 h-full w-full !rounded bg-black/50" />
+      <div className="absolute top-0 left-0 h-full w-full  !rounded bg-black/50" />
       <div className="z-10 flex w-fit flex-col items-center justify-center">
         {children}
       </div>

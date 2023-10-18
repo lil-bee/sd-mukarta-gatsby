@@ -107,10 +107,6 @@ export const DisplayPostTypes = ({ dynamicContent, style, className }) => {
     totalResults = data?.posts?.pageInfo?.offsetPagination?.total || 0;
   }
 
-  console.log(pageType);
-
-  console.log(filteredData);
-
   const totalPages = Math.ceil(totalResults / pageSize);
   return (
     <div className={`w-full ${className}`} style={style}>

@@ -15,8 +15,6 @@ import {
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 
 export const blockRendererComponents = (block) => {
-  console.log(block);
-
   switch (block.name) {
     case "core/cover": {
       return (
