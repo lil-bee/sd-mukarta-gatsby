@@ -22,6 +22,7 @@ module.exports = {
     `gatsby-transformer-sharp`, // Needed for dynamic images,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-image`,
+    `gatsby-plugin-netlify`,
     {
       resolve: `gatsby-source-wordpress`,
       options: {
