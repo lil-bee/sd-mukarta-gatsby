@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Sangbleu Sunrise";
+  font-family: "SangBleu Sunrise";
   font-style: normal;
   font-display: swap;
-  src: url(/fonts/Sangbleu-Sunrise.woff2) format("woff2");
+  src: url(/fonts/SangBleu-Sunrise.woff2) format("woff2");
 }
 
 @font-face {
