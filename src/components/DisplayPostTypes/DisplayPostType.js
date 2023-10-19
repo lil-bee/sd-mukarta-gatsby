@@ -6,7 +6,7 @@ import { Link } from "gatsby";
 export const DisplayPostTypes = ({ dynamicContent, style, className }) => {
   let currentPath = "";
 
-  const pageSize = 6;
+  const pageSize = 3;
   let page = 1;
 
   if (typeof window !== "undefined") {
