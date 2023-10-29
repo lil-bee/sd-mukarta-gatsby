@@ -59,8 +59,9 @@ export const Head = ({ data }) => {
   const page = data.wpPage || data.wpPrestasi || data.wpPost || data.wpAgenda;
   return (
     <>
+      <html lang="id"/>     
       <title>{page.seo?.title || ""}</title>
-      <meta name="description" content={page.seo?.metaDesc || ""}></meta>
+      <meta    name="description" content={page.seo?.metaDesc || ""}></meta>
     </>
   );
 };
