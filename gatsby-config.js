@@ -38,7 +38,6 @@ module.exports = {
           timeout: 120000,
           perPage: 15,
         },
-        verboseOutput: true,
       },
     },
     {
