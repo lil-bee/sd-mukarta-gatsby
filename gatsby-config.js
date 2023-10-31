@@ -40,6 +40,12 @@ module.exports = {
         },
         production: {
           allow404Images: true,
+          allow401Images: true,
+        },
+        debug: {
+          graphql: {
+            showQueryOnError: true,
+          },
         },
       },
     },
