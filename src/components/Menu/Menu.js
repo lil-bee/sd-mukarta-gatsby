@@ -127,7 +127,7 @@ export const Menu = () => {
               className="group relative flex h-full cursor-pointer"
             >
               <Link
-                className="flex h-full items-center px-4 font-medium text-white no-underline hover:bg-blue-900"
+                className="flex h-full items-center px-4 !font-medium text-white no-underline hover:bg-blue-900"
                 to={menuItem.root.destination?.uri}
                 onClick={(e) => handleNavigation(e, menuItem.root.label)}
               >
@@ -139,7 +139,7 @@ export const Menu = () => {
                     <Link
                       to={subMenuItem.destination?.uri}
                       key={index}
-                      className="block whitespace-nowrap p-4 font-normal text-white no-underline hover:bg-biru-gelap"
+                      className="block whitespace-nowrap p-4 !font-normal text-white no-underline hover:bg-biru-gelap"
                       onClick={(e) => handleNavigation(e, subMenuItem.label)}
                     >
                       {subMenuItem.label}

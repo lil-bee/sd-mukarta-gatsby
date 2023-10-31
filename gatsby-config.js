@@ -17,12 +17,19 @@ module.exports = {
         uri: process.env.WPGRAPHQL_URL,
       },
     },
-    "gatsby-plugin-react-helmet",
+    // "gatsby-plugin-react-helmet",
     "gatsby-plugin-postcss",
+
     `gatsby-transformer-sharp`, // Needed for dynamic images,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-image`,
     `gatsby-plugin-netlify`,
+    {
+      resolve: "gatsby-plugin-html-attributes",
+      options: {
+        lang: "id",
+      },
+    },
     {
       resolve: `gatsby-source-wordpress`,
       options: {
