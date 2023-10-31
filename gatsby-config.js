@@ -38,6 +38,9 @@ module.exports = {
           timeout: 120000,
           perPage: 15,
         },
+        production: {
+          allow404Images: true,
+        },
       },
     },
     {
