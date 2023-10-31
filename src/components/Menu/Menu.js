@@ -158,6 +158,7 @@ export const Menu = () => {
                 label={ctaButton.label}
                 destination={ctaButton.destination.uri}
                 type={ctaButton.tipe}
+                menu={true}
               />
             )
           )}

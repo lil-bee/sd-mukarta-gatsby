@@ -13,7 +13,8 @@ module.exports = {
       },
       colors: {
         "biru-gelap": "var(--wp--preset--color--biru-gelap)",
-        "emas-elegan": "var(--wp--preset--color--emas-elegan)",
+        "emas-elegan-gelap": "var(--wp--preset--color--emas-elegan-gelap)",
+        "emas-elegan-terang": "var(--wp--preset--color--emas-elegan-terang)",
       },
     },
   },

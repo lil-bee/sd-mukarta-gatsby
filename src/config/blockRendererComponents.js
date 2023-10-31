@@ -105,7 +105,7 @@ export const blockRendererComponents = (block) => {
       return (
         <div className="mt-3 hover:underline">
           <a href={block.attributes.href} download>
-            <p className="text-emas-elegan">
+            <p className="text-emas-elegan-gelap">
               {block.attributes.href
                 .split("/")
                 .pop()

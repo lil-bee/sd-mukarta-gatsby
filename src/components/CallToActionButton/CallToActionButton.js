@@ -8,6 +8,7 @@ export const CallToActionButton = ({
   fullWidth,
   isActive,
   putihOutline,
+  menu,
 }) => {
   const handleNavigation = (e, label) => {
     if (label === "Program Unggulan    →") {
@@ -39,14 +40,19 @@ export const CallToActionButton = ({
       className={` !no-underline
       ${
         isActive
-          ? "cursor-default bg-emas-elegan !px-6 !py-4 font-black hover:scale-105"
-          : "cursor-pointer bg-emas-elegan "
+          ? "cursor-default bg-emas-elegan-gelap !px-6 !py-4 font-black hover:scale-105"
+          : "cursor-pointer bg-emas-elegan-gelap"
       }
       
       ${fullWidth ? "block w-full" : "inline-block"}
       ${
         type === "outline"
-          ? "text-red border-2 border-emas-elegan bg-transparent !text-emas-elegan "
+          ? "text-red border-2 border-emas-elegan-gelap bg-transparent !text-emas-elegan-gelap "
+          : ""
+      }
+      ${
+        menu && type === "outline"
+          ? "text-red border-2 border-emas-elegan-terang bg-transparent !text-emas-elegan-terang "
           : ""
       }
       ${

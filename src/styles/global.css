@@ -52,7 +52,7 @@
 
 @layer components {
   .btn {
-    @apply rounded bg-emas-elegan py-2 px-3 text-center !text-white no-underline;
+    @apply rounded bg-emas-elegan-gelap py-2 px-3 text-center !text-white no-underline;
   }
 }
 
@@ -92,7 +92,7 @@
 }
 
 .wp-block-social-links:not(.is-style-logos-only) .wp-social-link {
-  @apply !bg-emas-elegan !text-white;
+  @apply !bg-emas-elegan-terang !text-white;
 }
 
 .cover-hero {

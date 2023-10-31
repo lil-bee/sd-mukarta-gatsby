@@ -140,7 +140,7 @@ export const DisplayPostTypes = ({ dynamicContent, style, className }) => {
               )}
               <div class="absolute top-0 right-0 bottom-0 left-0 mt-20 overflow-hidden rounded bg-gradient-to-b from-transparent to-gray-900 shadow-lg"></div>
               <div class="absolute top-0 right-0 left-0 mx-5 mt-2 flex items-center justify-end overflow-hidden bg-transparent ">
-                <div class="font-regular  flex flex-col justify-start rounded bg-emas-elegan p-1 text-right text-gray-100">
+                <div class="font-regular  flex flex-col justify-start rounded bg-emas-elegan-gelap p-1 text-right text-gray-100">
                   <span class="leading-0 text-2xl  font-semibold ">
                     {new Date(post.date).getDate()}
                   </span>
@@ -159,7 +159,7 @@ export const DisplayPostTypes = ({ dynamicContent, style, className }) => {
               <main class="z-10 p-5">
                 <Link
                   to={post.uri}
-                  class="text-xl font-semibold  leading-7 tracking-tight text-white !no-underline transition duration-300 ease-in-out hover:text-emas-elegan"
+                  class="text-xl font-semibold  leading-7 tracking-tight text-white !no-underline transition duration-300 ease-in-out hover:text-emas-elegan-gelap"
                 >
                   {post.title.length > 50 ? (
                     <span>{post.title.substring(0, 50)}...</span>
